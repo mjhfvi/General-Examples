@@ -4,16 +4,22 @@ FolderPath  = "C:\\repository\\WorkingFilesTime\\"
 NamePatternList = ["bin", "logs", "pdb", "src"]
 FileExtension = ".zip"
 FilePath01 = glob.glob(FolderPath + "*")
+SortList = []
 ToDelete = []
 
 # print(FilePath01)
 for x in FilePath01:
     if re.split('-', x)[4] == "bin" + FileExtension:
-        print("Found File: ", x)
+        print("Found File: ", x) 
+        SortList.append(re.split('-', x)[3])
+        list01 = sorted(SortList)           
+print(SortList)
 
-        list01 = sorted(ToDelete, key=lambda x: x.split("-")[2])
-        ToDelete.append(x)
-        print("\n\nprinting list", list01)
+        
+        # print(list01)
+        
+        # ToDelete.append(x)
+        # print("\n\nprinting list", list01)
 
-print("\n----------------------------")
-print("Files To Removing :", ToDelete[2:99])
+# print("\n----------------------------")
+# print("Files To Removing :", ToDelete[2:99])

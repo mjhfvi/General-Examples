@@ -5,6 +5,7 @@ NamePatternList = ["bin", "logs", "pdb", "src"]
 FileExtension = ".zip"
 FilePath01 = glob.glob(FolderPath + "*")
 SortList = []
+list01 = []
 ToDelete = []
 
 for x in FilePath01:
@@ -12,10 +13,13 @@ for x in FilePath01:
         print("Found File: ", x) 
         SortList.append(re.split('-', x)[3])
         list01 = sorted(SortList)
-
-for y in SortList:
-    if(y in SortList):
-        print(SortList[2:99])
+        # print(list01)
+        for y in list01:
+            if(y in SortList):
+                ToDelete.append(x)
+        
+print("\n\n", ToDelete)
+        # print(SortList[2:99])
         # ToDelete.append(y)
         # print(ToDelete)
 

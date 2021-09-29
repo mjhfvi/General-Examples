@@ -6,19 +6,37 @@ FileExtension = ".zip"
 FilePath01 = glob.glob(FolderPath + "*")
 SortList = []
 list01 = []
+list02 = []
 ToDelete = []
 
 for x in FilePath01:
     if re.split('-', x)[4] == "bin" + FileExtension:
-        print("Found File: ", x) 
+        print("Found File: ", x)
+        list02.append(x)
         SortList.append(re.split('-', x)[3])
-        list01 = sorted(SortList)
-        # print(list01)
         for y in list01:
             if(y in SortList):
-                ToDelete.append(x)
+                # ToDelete.append(x)
+                SortList.append(y)
+
+if any(x in SortList for x in list02):
+    # ToDelete.append(x)
+    # print(x)
+    print("Duplicates found.")
+else:
+    print("No duplicates found.")
+
+# for u in SortList:
+#     if any(u) in list02:
+#         print("this is value U", u)
+
+
+
+print("\nthis is SortList", SortList)
+print("\nthis is list02", list02)
+# print("\n\nthis is ToDelete", ToDelete)
+
         
-print("\n\n", ToDelete)
         # print(SortList[2:99])
         # ToDelete.append(y)
         # print(ToDelete)

@@ -6,33 +6,24 @@ FileExtension = ".zip"
 FilePath01 = glob.glob(FolderPath + "*")
 SortList = []
 list01 = []
-list02 = []
 ToDelete = []
 
-
 for x in FilePath01:
-    if re.split('-', x)[4] == "bin" + FileExtension:
-        print("Found File: ", x)
-        list02.append(x)
-        SortList.append(re.split('-', x)[3])
-        for y in list01:
-            if(y in SortList):
-                SortList.append(y)
-                
-for u in SortList:
-    list = any(u in string for string in list02)
-    if list == True:
-        ToDelete.append(x)   # add def to fix it
-        # os.remove(u[2:99]
+    if re.split('-', x)[4] == "bin" + FileExtension:        # find files with bin in the name
+        print("Found File: ", x)                            # print file after found bin in the name
+        list01.append(x)                                    # appand the file to list01
+        SortList.append(re.split('-', x)[3])                # appand only the 3 value after the "-" to the Sortlist
+        SortList.sort()
+        
+for i in SortList:
+    FindValue = list(filter(lambda x: i in x, list01))      # check if file name in Sortlist is in list01
+    ToDelete.append(FindValue)                              # add value from FindValue it to todeletelist
+print("\nList Files to Delete :", ToDelete)                 # print ToDelete list for test
 
-print("\n\nthis is ToDelete", ToDelete)
+for u in ToDelete:
+    os.remove(u)
+    print("\n----------------------------")
+    print("Files To Removing :", ToDelete[0:99])
 
-
-
-# for u in ToDelete:
-    # os.remove(u[2:99])
-    # print("\n----------------------------")
-    # print("Files To Removing :", ToDelete[0:99])
-
-
+print("files remain after detele: ", ToDelete)
 

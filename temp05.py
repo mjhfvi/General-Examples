@@ -1,6 +1,6 @@
 import glob, os, time, sys, fnmatch, re
 
-FolderPath  = "C:\\repository\\WorkingFilesTime\\" 
+FolderPath  = "C:\\repository\\GeneralExamples\\WorkingFilesTime\\" 
 NamePatternList = ["bin", "logs", "pdb", "src"]
 FileExtension = ".zip"
 FilePath01 = glob.glob(FolderPath + "*")
@@ -9,6 +9,7 @@ list01 = []
 list02 = []
 ToDelete = []
 
+
 for x in FilePath01:
     if re.split('-', x)[4] == "bin" + FileExtension:
         print("Found File: ", x)
@@ -16,30 +17,17 @@ for x in FilePath01:
         SortList.append(re.split('-', x)[3])
         for y in list01:
             if(y in SortList):
-                # ToDelete.append(x)
                 SortList.append(y)
+                
+for u in SortList:
+    list = any(u in string for string in list02)
+    if list == True:
+        ToDelete.append(x)   # add def to fix it
+        # os.remove(u[2:99]
 
-if any(x in SortList for x in list02):
-    # ToDelete.append(x)
-    # print(x)
-    print("Duplicates found.")
-else:
-    print("No duplicates found.")
-
-# for u in SortList:
-#     if any(u) in list02:
-#         print("this is value U", u)
+print("\n\nthis is ToDelete", ToDelete)
 
 
-
-print("\nthis is SortList", SortList)
-print("\nthis is list02", list02)
-# print("\n\nthis is ToDelete", ToDelete)
-
-        
-        # print(SortList[2:99])
-        # ToDelete.append(y)
-        # print(ToDelete)
 
 # for u in ToDelete:
     # os.remove(u[2:99])

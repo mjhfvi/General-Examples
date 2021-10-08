@@ -15,6 +15,7 @@ SortList = []
 list01 = []
 ToDelete = []
 
+<<<<<<< Updated upstream
 def FilePattern(Pattern):
     for x in FilePath01:
         if re.split('-', x)[4] == Pattern + FileExtension:      # find files from the NamePatternList list
@@ -33,5 +34,25 @@ print("\nList Files to Delete :", ToDelete)                     # print ToDelete
 
 for u in ToDelete[16:99]:                                       # select all value but the first 4 valuse in the ToDelete list
     print(os.remove(u[0]))                                      # remove file in the list
+=======
+for x in FilePath01:
+    if re.split('-', x)[4] == "bin" + FileExtension:        # find files with bin in the name
+        print("Found File: ", x)                            # print file after found bin in the name
+        list01.append(x)                                    # appand the file to list01
+        SortList.append(re.split('-', x)[3])                # appand only the 3 value after the "-" to the Sortlist
+        SortList.sort()
+        
+for i in SortList:
+    FindValue = list(filter(lambda x: i in x, list01))      # check if file name in Sortlist is in list01
+    ToDelete.append(FindValue)                             # add value from FindValue it to todeletelist
+print("\nList Files to Delete :", ToDelete)                 # print ToDelete list for test
+
+for u in ToDelete[2:99]:
+    print("\n----------------------------")
+    print(os.remove(u[0]))
+    # print("Files To Removing :", ToDelete[0:99])
+
+print("files remain after detele: ", ToDelete)
+>>>>>>> Stashed changes
 
 print("files remain after delete: ", ToDelete)                  # print list after the delete process

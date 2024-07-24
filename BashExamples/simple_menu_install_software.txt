@@ -1,0 +1,31 @@
+#!/usr/bin/bash
+# Bash Menu Script Example
+
+echo -e 'Welcome to this menu\n'
+PS3='Please enter your choice: '
+options=("Option 1" "Option 2" "Option 3" "Quit")
+
+select opt in "${options[@]}"
+do
+    case $opt in
+        "Option 1")
+            echo "you chose to update your system"
+            sleep 2
+            sudo apt-get update
+            ;;
+        "Option 2")
+            echo "you chose to install a software"
+            sleep 2
+            echo "please input the software you want to install"
+            read installsoftware
+            sudo apt-get install $installsoftware -y
+            ;;
+        "Option 3")
+            echo "you chose choice $REPLY which is $opt"
+            ;;
+        "Quit")
+            break
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done
